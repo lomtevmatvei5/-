@@ -43,11 +43,11 @@ class Fs {
         return m;
     }
 
-    public void showfrac() {
+    public String showfrac() {
        if (fz % fm == 0)
-           System.out.println(this.fz / this.fm);
+           return String.valueOf(this.fz / this.fm);
        else
-           System.out.println(this.fz + "/" + this.fm);
+           return String.valueOf(this.fz + "/" + this.fm);
    }
 
     public String frac2str(){
@@ -147,16 +147,16 @@ public class Main {
                 switch (symb3) {
                     case "+":
                         Fs new_frac = frac_1.sum(frac_2);
-                        return new_frac.frac2str();
+                        return new_frac.showfrac();
                     case "-":
                         Fs new_frac_2 = frac_1.minus(frac_2);
-                        return new_frac_2.frac2str();
+                        return new_frac_2.showfrac();
                     case "*":
                         Fs new_frac_3 = frac_1.multiply(frac_2);
-                        return new_frac_3.frac2str();
+                        return new_frac_3.showfrac();
                     case "/":
                         Fs new_frac_4 = frac_1.div(frac_2);
-                        return new_frac_4.frac2str();
+                        return new_frac_4.showfrac();
                 }
         }
         return "0";

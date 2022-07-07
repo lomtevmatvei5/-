@@ -22,6 +22,36 @@ public class CalculatorTest {
         assertEquals("1", actual);
     }
 
+    @Test
+    void div(){
+        String actual = Main.calculate(1,"6", "/", "2");
+        assertEquals("3", actual);
+    }
+
+    @Test
+    void addition1(){
+        String actual = Main.calculate(2,"1/2", "+", "1/2");
+        assertEquals("1", actual);
+    }
+
+    @Test
+    void multiplication1(){
+        String actual = Main.calculate(2,"1/2", "*", "1/2");
+        assertEquals("1/4", actual);
+    }
+
+    @Test
+    void minus1(){
+        String actual = Main.calculate(2,"1/2", "-", "1/2");
+        assertEquals("0", actual);
+    }
+
+    @Test
+    void div1(){
+        String actual = Main.calculate(2,"1/2", "/", "1/2");
+        assertEquals("1", actual);
+    }
+
 
 
 
