@@ -49,6 +49,10 @@ class Fs {
        else
            System.out.println(this.fz + "/" + this.fm);
    }
+
+    public String frac2str(){
+        return String.valueOf(fz + "/" + fm);
+    }
 }
 
 public class Main {
@@ -110,24 +114,51 @@ public class Main {
         }
     }
 
-    public static String calculate(String s, String s1, String s2) {
-        Scanner in = new Scanner(System.in);
-        int num_1 = Integer.parseInt(s);
-        String symb = s1;
-        int num_2 = Integer.parseInt(s2);
-        switch (symb) {
-            case "+":
-                return String.valueOf(num_1+num_2);
-            case "-":
-                return String.valueOf(num_1-num_2);
-            case "*":
-                return String.valueOf(num_1 * num_2);
-            case "/":
-                if (num_2 == 0) {
-                    return "деление на 0";
-                } else
-                    return String.valueOf(num_1 / num_2);
+    public static String calculate(int num, String s, String s1, String s2) {
+        int _case = num;
+        switch (_case) {
+            case 1:
+                int num_1 = Integer.parseInt(s);
+                String symb = s1;
+                int num_2 = Integer.parseInt(s2);
+                switch (symb) {
+                    case "+":
+                        return String.valueOf(num_1 + num_2);
+                    case "-":
+                        return String.valueOf(num_1 - num_2);
+                    case "*":
+                        return String.valueOf(num_1 * num_2);
+                    case "/":
+                        if (num_2 == 0) {
+                            return "0";
+                        } else
+                            return String.valueOf(num_1 / num_2);
+                }
+            case 2:
+                String[] parts = s.split("/");
+                int num1 = Integer.parseInt(parts[0]);
+                int num2 = Integer.parseInt(parts[1]);
+                Fs frac_1 = new Fs(num1, num2);
+                String symb3 = s1;
+                String[] parts2 = s2.split("/");
+                int num_3 = Integer.parseInt(parts2[0]);
+                int num_4 = Integer.parseInt(parts2[1]);
+                Fs frac_2 = new Fs(num_3, num_4);
+                switch (symb3) {
+                    case "+":
+                        Fs new_frac = frac_1.sum(frac_2);
+                        return new_frac.frac2str();
+                    case "-":
+                        Fs new_frac_2 = frac_1.minus(frac_2);
+                        return new_frac_2.frac2str();
+                    case "*":
+                        Fs new_frac_3 = frac_1.multiply(frac_2);
+                        return new_frac_3.frac2str();
+                    case "/":
+                        Fs new_frac_4 = frac_1.div(frac_2);
+                        return new_frac_4.frac2str();
+                }
         }
-        return "";
+        return "0";
     }
 }
