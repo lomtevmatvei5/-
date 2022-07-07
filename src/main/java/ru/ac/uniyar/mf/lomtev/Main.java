@@ -1,13 +1,28 @@
 package ru.ac.uniyar.mf.lomtev;
 import java.util.Scanner;
+import java.util.ArrayList;
 
 class Fs {
     int fz, fm;
 
-    public Fs(int x, int y) {
-        fz = x;
-        fm = y;
+    Fs(int fz) {
+        this.fz = fz;
+        this.fm = 1;
     }
+
+    public Fs(int fz, int fm) {
+        this.fz = fz;
+        this.fm = fm;
+    }
+
+    public int getNumerator() {
+        return fz;
+    }
+
+    public int getDenominator() {
+        return fm;
+    }
+
 
     public Fs sum(Fs fs) {
         int Fz = fz * fs.fm + fm * fs.fz;
@@ -43,28 +58,28 @@ class Fs {
         return m;
     }
 
-    public String showfrac() {
-       if (fz % fm == 0)
-           return String.valueOf(this.fz / this.fm);
-       else
-           return String.valueOf(this.fz + "/" + this.fm);
-   }
-
-    public String frac2str(){
-        return String.valueOf(fz + "/" + fm);
+    public void showfrac() {
+        if (fz % fm == 0)
+            System.out.println(this.fz / this.fm);
+        else
+            System.out.println(this.fz + "/" + this.fm);
     }
+
 }
 
 public class Main {
     public static void main(String[] args) {
+        ArrayList<Integer> nums = new ArrayList<Integer>();
         System.out.println("Выберите калькулятор:");
         Scanner in = new Scanner(System.in);
         int _case = in.nextInt();
         switch(_case) {
             case 1:
                 int num_1 = in.nextInt();
+                nums.add(num_1);
                 String symb = in.next();
                 int num_2 = in.nextInt();
+                nums.add(num_2);
                 switch (symb) {
                     case "+":
                         System.out.println(num_1 + num_2);
@@ -84,14 +99,16 @@ public class Main {
                         break;
                 }
             case 2:
-                int num1 = in.nextInt();
-                String symb1 = in.next();
-                int num2 = in.nextInt();
+                String frac = in.next();
+                String[] parts = frac.split("/");
+                int num1 = Integer.parseInt(parts[0]);
+                int num2 = Integer.parseInt(parts[1]);
                 Fs frac_1 = new Fs(num1, num2);
                 String symb3 = in.next();
-                int num_3 = in.nextInt();
-                String symb2 = in.next();
-                int num_4 = in.nextInt();
+                String frac2 = in.next();
+                String[] parts2 = frac2.split("/");
+                int num_3 = Integer.parseInt(parts2[0]);
+                int num_4 = Integer.parseInt(parts2[1]);
                 Fs frac_2 = new Fs(num_3, num_4);
                 switch (symb3) {
                     case "+":
@@ -147,16 +164,16 @@ public class Main {
                 switch (symb3) {
                     case "+":
                         Fs new_frac = frac_1.sum(frac_2);
-                        return new_frac.showfrac();
+                        new_frac.showfrac();
                     case "-":
                         Fs new_frac_2 = frac_1.minus(frac_2);
-                        return new_frac_2.showfrac();
+                        new_frac_2.showfrac();
                     case "*":
                         Fs new_frac_3 = frac_1.multiply(frac_2);
-                        return new_frac_3.showfrac();
+                        new_frac_3.showfrac();
                     case "/":
                         Fs new_frac_4 = frac_1.div(frac_2);
-                        return new_frac_4.showfrac();
+                        new_frac_4.showfrac();
                 }
         }
         return "0";
