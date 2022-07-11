@@ -23,6 +23,14 @@ class Fs {
         return fm;
     }
 
+    void set_numerator(int num){
+        this.fz = num;
+    }
+
+    void set_denominator(int num){
+        this.fm = num;
+    }
+
 
     public Fs sum(Fs fs) {
         int Fz = fz * fs.fm + fm * fs.fz;
